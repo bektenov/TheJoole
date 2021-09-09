@@ -19,37 +19,61 @@ namespace Joole_Repository
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            entities.Remove(entity);
+            db.SaveChanges();
         }
 
         public T Get(long id)
         {
-            throw new NotImplementedException();
+            T entity = entities.Find(id);
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            return entity;
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return entities.AsEnumerable();
         }
 
         public void Insert(T entity)
         {
-            throw new NotImplementedException();
+            if (entities == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            entities.Add(entity);
+            db.SaveChanges();
         }
 
         public void Remove(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            entities.Remove(entity);
         }
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            db.SaveChanges();
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+            db.Entry(entity).State = EntityState.Modified;
+            db.SaveChanges();
         }
     }
 
