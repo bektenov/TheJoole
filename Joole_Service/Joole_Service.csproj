@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Joole_DataAccess\Joole_DataAccess.csproj">
@@ -50,7 +52,7 @@
       <Name>Joole_DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Joole_Repository\Joole_Repository.csproj">
-      <Project>{a04bd440-9720-497e-a011-015271342767}</Project>
+      <Project>{28796d51-2f36-4cc6-aa24-a0691fd5f55a}</Project>
       <Name>Joole_Repository</Name>
     </ProjectReference>
   </ItemGroup>

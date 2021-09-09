@@ -192,10 +192,6 @@
       <Project>{7d986c6c-b280-4d17-8ed2-6886798e22d4}</Project>
       <Name>Joole_DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Joole_Repository\Joole_Repository.csproj">
-      <Project>{a04bd440-9720-497e-a011-015271342767}</Project>
-      <Name>Joole_Repository</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Joole_Service\Joole_Service.csproj">
       <Project>{d6ed453d-8036-45f1-8d86-6f17bb60e828}</Project>
       <Name>Joole_Service</Name>
