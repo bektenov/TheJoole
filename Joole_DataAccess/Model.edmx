@@ -222,7 +222,7 @@ warning 6002: The table/view 'JooleDB.dbo.ProjtoProd' does not have a primary ke
           <Property Name="User_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="User_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="User_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="User_Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Image" Type="Byte" Nullable="false" />
           <Property Name="User_Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Projects" Relationship="Self.Project_fk0" FromRole="Users" ToRole="Project" />
         </EntityType>
