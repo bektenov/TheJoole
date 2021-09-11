@@ -57,7 +57,7 @@
     <Compile Include="Category.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Metadata.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,6 +73,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="PartialClasses.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

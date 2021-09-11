@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Joole_DataAccess
 {
-    public class Class1
+    [MetadataType(typeof(UserMetadata))]
+    public partial class User
     {
+
     }
 }

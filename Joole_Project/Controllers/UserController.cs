@@ -31,7 +31,7 @@ namespace Joole_Project.Controllers
                     return RedirectToAction("Search", "Search");
                 }
 
-                else
+                else //if login and password do not match 
                 {
                     user.LoginErrorMessage = "Wrong Username or Password";
                     return View("Login", user);
@@ -59,7 +59,7 @@ namespace Joole_Project.Controllers
                 }
                 else
                 {
-                    if (file != null && file.ContentLength > 0)
+                    if (file != null && file.ContentLength > 0) //if file exist
                     {
                         try
                         {
