@@ -26,9 +26,26 @@ namespace Joole_DataAccess
         public string Product_Image { get; set; }
         public string Series { get; set; }
         public string Model { get; set; }
-        public System.DateTime Model_Year { get; set; }
+        public string Model_Year { get; set; }
         public string Series_Info { get; set; }
         public string Featured { get; set; }
+        public string UseType { get; set; }
+        public string Application { get; set; }
+        public string Mount { get; set; }
+        public string Accessories { get; set; }
+        public string AirFlow { get; set; }
+        public string MinPower { get; set; }
+        public string MaxPower { get; set; }
+        public string MinVolt { get; set; }
+        public string MaxVolt { get; set; }
+        public string MinRPM { get; set; }
+        public string MaxRPM { get; set; }
+        public string Speeds { get; set; }
+        public string Sound { get; set; }
+        public string Sweep { get; set; }
+        public string MinHeight { get; set; }
+        public string MaxHeight { get; set; }
+        public string Weight { get; set; }
     
         public virtual SubCategory SubCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

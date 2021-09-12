@@ -22,9 +22,26 @@
           <Property Name="Product_Image" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Series" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Model" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Model_Year" Type="datetime" Nullable="false" />
+          <Property Name="Model_Year" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Series_Info" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Featured" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UseType" Type="varchar" MaxLength="100" />
+          <Property Name="Application" Type="varchar" MaxLength="100" />
+          <Property Name="Mount" Type="varchar" MaxLength="100" />
+          <Property Name="Accessories" Type="varchar" MaxLength="100" />
+          <Property Name="AirFlow" Type="varchar" MaxLength="100" />
+          <Property Name="MinPower" Type="varchar" MaxLength="100" />
+          <Property Name="MaxPower" Type="varchar" MaxLength="100" />
+          <Property Name="MinVolt" Type="varchar" MaxLength="100" />
+          <Property Name="MaxVolt" Type="varchar" MaxLength="100" />
+          <Property Name="MinRPM" Type="varchar" MaxLength="100" />
+          <Property Name="MaxRPM" Type="varchar" MaxLength="100" />
+          <Property Name="Speeds" Type="varchar" MaxLength="100" />
+          <Property Name="Sound" Type="varchar" MaxLength="100" />
+          <Property Name="Sweep" Type="varchar" MaxLength="100" />
+          <Property Name="MinHeight" Type="varchar" MaxLength="100" />
+          <Property Name="MaxHeight" Type="varchar" MaxLength="100" />
+          <Property Name="Weight" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -186,11 +203,28 @@ warning 6002: The table/view 'JooleDB.dbo.ProjtoProd' does not have a primary ke
           <Property Name="Product_Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Series" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Model" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Model_Year" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Model_Year" Type="String" Nullable="false" />
           <Property Name="Series_Info" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Featured" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="SubCategory" Relationship="Self.Product_fk0" FromRole="Product" ToRole="SubCategory" />
           <NavigationProperty Name="ProjtoProds" Relationship="Self.Product_IDConstraint" FromRole="Product" ToRole="ProjtoProd" />
+          <Property Name="UseType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Application" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Mount" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Accessories" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AirFlow" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MinPower" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MaxPower" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MinVolt" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MaxVolt" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MinRPM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MaxRPM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Speeds" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sound" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sweep" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MinHeight" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MaxHeight" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Weight" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -346,6 +380,23 @@ warning 6002: The table/view 'JooleDB.dbo.ProjtoProd' does not have a primary ke
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="JooleDBModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="MaxHeight" ColumnName="MaxHeight" />
+                <ScalarProperty Name="MinHeight" ColumnName="MinHeight" />
+                <ScalarProperty Name="Sweep" ColumnName="Sweep" />
+                <ScalarProperty Name="Sound" ColumnName="Sound" />
+                <ScalarProperty Name="Speeds" ColumnName="Speeds" />
+                <ScalarProperty Name="MaxRPM" ColumnName="MaxRPM" />
+                <ScalarProperty Name="MinRPM" ColumnName="MinRPM" />
+                <ScalarProperty Name="MaxVolt" ColumnName="MaxVolt" />
+                <ScalarProperty Name="MinVolt" ColumnName="MinVolt" />
+                <ScalarProperty Name="MaxPower" ColumnName="MaxPower" />
+                <ScalarProperty Name="MinPower" ColumnName="MinPower" />
+                <ScalarProperty Name="AirFlow" ColumnName="AirFlow" />
+                <ScalarProperty Name="Accessories" ColumnName="Accessories" />
+                <ScalarProperty Name="Mount" ColumnName="Mount" />
+                <ScalarProperty Name="Application" ColumnName="Application" />
+                <ScalarProperty Name="UseType" ColumnName="UseType" />
                 <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
                 <ScalarProperty Name="SubCategory_Id" ColumnName="SubCategory_Id" />
                 <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
