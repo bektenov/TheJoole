@@ -1,0 +1,67 @@
+﻿@model Joole_DataAccess.User
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/Login.css" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+
+
+<div id="signup" class="col-md-4">
+    @Html.ActionLink("Signup", "SignupPage", "Consumers")
+</div>
+
+
+
+<img src="~/Content/image/jooleImg.png" id="jooleImg" margin-top="100px" />
+
+<h2>Building Product Selection Platform</h2>
+
+@using (Html.BeginForm("Auth", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group row justify-content-md-center">
+            <div class="col-md-10">
+                
+                    <span class="glyphicon glyphicon-user"></span>
+                    @Html.EditorFor(model => model.User_Name, new { htmlAttributes = new { placeholder = "Username or Email", id = "userEditor", @class = "form-control form-control-sm" } })
+
+
+                
+                <br />
+                @Html.ValidationMessageFor(model => model.User_Name, "", new { @class = "text-danger" })
+
+            
+                <span class="glyphicon glyphicon-lock"></span>
+                @Html.EditorFor(model => model.User_Password, new { htmlAttributes = new { placeholder = "Password", id = "PassEditor", @class = "form-control form-control-sm" } })
+
+            
+                <br />
+                @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
+
+                <label class="text-danger"> @Html.DisplayFor(model => model.LoginErrorMessage) </label>
+            </div>
+            <label class="text-success">@ViewBag.SuccessMessage</label>
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="loginbtn" class="btn btn-primary" value="Log In" />
+            </div>
+        </div>
+
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
