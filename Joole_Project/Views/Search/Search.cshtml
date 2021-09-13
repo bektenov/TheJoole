@@ -48,12 +48,12 @@
                 </button>
                 <ul class="dropdown-menu " id="Category">
 
-                    @* @foreach (var val in Model.c)
+                     @foreach (var val in Model.c)
                         {
                             <li value="@val.Category_Name" sub-id="@val.Category_Id"></li>
-                        }*@
+                        }
 
-                    @{
+                    @*{
                         foreach (var item in ViewBag.data)
                         {
 
@@ -62,7 +62,7 @@
                             <li> <a href="#" name="Category" value="@item.Category_Name"> @item.Category_Name </a> </li>
 
                         }
-                    }
+                    } *@
 
 
 
