@@ -128,6 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +144,7 @@
     <Content Include="Content\ProducDetails.css" />
     <Content Include="Content\productsummary.css" />
     <Content Include="Content\image\jooleImg.png" />
+    <Content Include="Content\Search.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\SignUp.css" />
     <Content Include="favicon.ico" />
@@ -186,6 +188,7 @@
     <Folder Include="Views\Default\" />
     <Folder Include="Views\User\" />
     <Content Include="Views\User\SignUp.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />

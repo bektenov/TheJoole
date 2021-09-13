@@ -1,0 +1,111 @@
+﻿@*<style type="text/css">
+        .auto-style1 {
+            width: 342px;
+        }
+
+        .auto-style2 {
+            width: 74px;
+            height: 74px;
+        }
+    </style>*@
+@{
+    ViewBag.Title = "Search";
+}
+
+@model Joole_DataAccess.SearchVM
+
+
+@Styles.Render("~/Content/Search.css");
+<head>
+    <link rel="#" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/search.css">
+
+
+</head>
+
+<body id="styleSearch">
+
+
+
+
+    <img src="~/Content/image/jooleImg.png" id="jooleImg" margin-top="100px" />
+
+
+
+    @using (Html.BeginForm("Search", "Search", FormMethod.Get))
+    {
+        <h3> Building Product Selection Platform</h3>
+
+
+
+        <div class="d-flex flex-row">
+
+            <div class="dropdown p-2">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="color:black">
+                    Category
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu " id="Category">
+
+                    @* @foreach (var val in Model.c)
+                        {
+                            <li value="@val.Category_Name" sub-id="@val.Category_Id"></li>
+                        }*@
+
+                    @{
+                        foreach (var item in ViewBag.data)
+                        {
+
+                            //<li href="#">@item.Category_Name</li>
+
+                            <li> <a href="#" name="Category" value="@item.Category_Name"> @item.Category_Name </a> </li>
+
+                        }
+                    }
+
+
+
+                </ul>
+
+
+                &nbsp;<input type="search" id="searchInput" class="auto-style1" name=" SubCategory" />
+
+                <datalist id="subCategories">
+
+                    @foreach (var item in Model.catJoinSub)
+                    {
+                        <option value="@item.sub.SubCategory_Name" sub-id="@item.sub.SubCategory_Id"></option>
+                    }
+
+                </datalist>
+
+                <button type="submit" class="btn btn-primary">
+                    @* <i class="fas fa-search">&nbsp; </i>*@
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                    </svg>
+                </button>
+                &nbsp;
+
+                <div class="auto-style2">
+                    <div class="form-outline">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    }
+
+
+
+</body>
+
+
+
+
+
