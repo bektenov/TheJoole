@@ -12,17 +12,59 @@ namespace Joole_Project.Controllers
     {
         // GET: Search
         public ActionResult Search()
+        {
+            JooleDBEntities1 db = new JooleDBEntities1();
+            var ss = new SearchService(db);
+            var sVM = new SearchVM();
+            ss.LoadSearch(ref sVM);
+
+
+            //this is for viewBag stuff using movel gave funky  result 
+            List<Category> c = ss.getCategory.ToList();
+            ViewBag.data = c;
+
+            return View("Search", sVM);
+
+        }
+
+
+        public ActionResult  ProductSummary(string SubCategory)
+
+        {
+           
+           
+            
+
+              JooleDBEntities1 db = new JooleDBEntities1();
+              var sData =   db.SubCategories.Where(x => x.SubCategory_Name == SubCategory);
+
+
+
+                return View("ProductSummary", sData);
+            
+        }
+
+            
+           
+      
+
+
+
+     
+
+
+     /*   public ActionResult SearchSubCategory(int id)
 
         {
             JooleDBEntities1 db = new JooleDBEntities1();
             var ss = new SearchService(db);
 
-            List<Category> c = ss.getCategory.ToList();
+            List<Category> c = ss.getAllSubCategoriesByCategoryID(id)
 
-            ViewBag.data = c; 
+            ViewBag.data = c;
 
-            return View();
-        }
+            return View("Search");
+        }*/
     }
 }
 

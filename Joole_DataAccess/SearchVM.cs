@@ -6,9 +6,20 @@ using System.Threading.Tasks;
 
 namespace Joole_DataAccess
 {
-    class SearchVM
+    public class SearchVM
     {
-        public List<Category> cat { get; set; }
+        public List<Category> c { get; set; }
+
+        public class JoinSubCategorywithCategory
+        {
+            public Category cat { get; set; }
+            public SubCategory sub { get; set; }
+        }
+
+        public List<JoinSubCategorywithCategory> catJoinSub {get ; set ; }  
+
+
+       
         
     }
 }

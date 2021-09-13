@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Joole_DataAccess;
+using static Joole_DataAccess.SearchVM;
 
 namespace Joole_Service
 {
@@ -16,7 +17,7 @@ namespace Joole_Service
         }
 
        
-        public IEnumerable<Category> getCategory
+        public List<Category> getCategory
         {
             get
             {
@@ -27,7 +28,45 @@ namespace Joole_Service
 
          
         }
+
+        public List<SubCategory> getSubCategories(int categoryID)
+        {
+            return db.SubCategories.Where(sub => sub.Category_Id == categoryID).ToList();
+        }
+
+
+
+        public List<JoinSubCategorywithCategory> getAllSubCategoriesByCategoryID
+        {
+            get
+            {
+                var sus =  db.Categories.Join(db.SubCategories, c => c.Category_Id, sc => sc.Category_Id, (c, sc) => new SearchVM.JoinSubCategorywithCategory { cat = c, sub = sc }).ToList();
+                return sus; 
+            }
+
+
+
+        }
+
      
+
+        public void LoadSearch(ref SearchVM s)
+        {
+
+            s.catJoinSub = getAllSubCategoriesByCategoryID;
+            s.c = getCategory; 
+           
+
+        }
+
+
+
+
+
+
+
+
+
     }
 }
 
