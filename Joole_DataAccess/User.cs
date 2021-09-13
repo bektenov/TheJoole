@@ -25,9 +25,9 @@ namespace Joole_DataAccess
         public string User_Email { get; set; }
         public byte[] User_Image { get; set; }
         public string User_Password { get; set; }
-
+        public string Confirm_Password { get; set; }
         public string LoginErrorMessage { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project> Projects { get; set; }
     }
