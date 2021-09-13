@@ -17,7 +17,7 @@ namespace TheJooleProject.Models
         public string Model { get; set; }
         public string Product_image { get; set; }
         //property for TYPE
-        public Nullable<System.DateTime> Model_Year { get; set; }
+        public string Model_Year { get; set; }
 
         //property for techspec
 

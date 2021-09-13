@@ -184,14 +184,10 @@
     <Content Include="Views\Product\ProductSummary.cshtml" />
     <Content Include="Views\Shared\_ProductLayout.cshtml" />
     <Content Include="Views\Product\ProductsCompare.cshtml" />
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Default\" />
-    <Folder Include="Views\User\" />
     <Content Include="Views\User\SignUp.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Content Include="Views\Search\ProductSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -215,6 +211,10 @@
       <Project>{d6ed453d-8036-45f1-8d86-6f17bb60e828}</Project>
       <Name>Joole_Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

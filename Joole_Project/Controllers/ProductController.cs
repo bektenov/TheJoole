@@ -14,7 +14,7 @@ using TheJooleProject.Models;
 
 namespace Joole_Project.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
         private JooleDBEntities1 db = new JooleDBEntities1();
         private IProductService productService = new ProductService();
@@ -35,9 +35,9 @@ namespace Joole_Project.Controllers
         }
         public ActionResult ProductDetails(long? id)
         {
-            Product p = productService.GetProduct(id.Value);
-            ProductDetailsVM model = feedProductVM(p);
-            return View("ProductDetails", model);
+           // Product p = productService.GetProduct(id.Value);
+            //ProductDetailsVM model = feedProductVM(p);
+            return View("ProductDetails");
         }
         [HttpGet]
         public ActionResult ProductsCompare(long? id1, long? id2, long? id3)
