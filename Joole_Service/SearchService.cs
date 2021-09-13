@@ -29,6 +29,21 @@ namespace Joole_Service
          
         }
 
+        public List<SubCategory> getSubCategory
+        {
+            get
+            {
+
+                List<SubCategory> sb = db.SubCategories.ToList();
+                return sb;
+            }
+
+
+        }
+
+
+
+
         public List<SubCategory> getSubCategories(int categoryID)
         {
             return db.SubCategories.Where(sub => sub.Category_Id == categoryID).ToList();

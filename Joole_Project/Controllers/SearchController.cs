@@ -32,15 +32,34 @@ namespace Joole_Project.Controllers
 
         {
            
-           
-            
+                    
 
               JooleDBEntities1 db = new JooleDBEntities1();
               var sData =   db.SubCategories.Where(x => x.SubCategory_Name == SubCategory);
 
 
+            return RedirectToAction("Product", "ProductSummary");
 
-                return View("ProductSummary", sData);
+            
+            
+        }
+
+        public ActionResult AdvanceSearch()
+        {
+
+            JooleDBEntities1 db = new JooleDBEntities1();
+            var ss = new SearchService(db);
+            List<Category> c = ss.getCategory.ToList();
+            ViewBag.data = c;
+        
+            List<Category> sc = ss.getCategory.ToList();
+            ViewBag.msg = sc;
+
+            return View("AdvanceSearch");
+
+
+           
+
             
         }
 

@@ -14,7 +14,7 @@ using TheJooleProject.Models;
 
 namespace Joole_Project.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
         private JooleDBEntities1 db = new JooleDBEntities1();
         private IProductService productService = new ProductService();
