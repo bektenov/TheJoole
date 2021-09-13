@@ -18,6 +18,7 @@ namespace Joole_DataAccess
         [Required(ErrorMessage = "This field is required.")]
         public string User_Email { get; set; }
 
+        [DisplayName("Password")]
         [Required(ErrorMessage = "This field is required.")]
         [DataType(DataType.Password)]
         public string User_Password { get; set; }
