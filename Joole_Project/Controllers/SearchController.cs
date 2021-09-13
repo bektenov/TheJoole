@@ -40,7 +40,7 @@ namespace Joole_Project.Controllers
 
 
 
-                return View("ProductSummary", sData);
+                return View("ProductSummary");
             
         }
 
