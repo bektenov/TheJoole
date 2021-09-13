@@ -14,7 +14,7 @@ using TheJooleProject.Models;
 
 namespace Joole_Project.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
         private JooleDBEntities1 db = new JooleDBEntities1();
         private IProductService productService = new ProductService();
@@ -35,7 +35,16 @@ namespace Joole_Project.Controllers
         }
         public ActionResult ProductDetails(long? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Product p = productService.GetProduct(id.Value);
+
+            if (p == null)
+            {
+                return HttpNotFound();
+            }
             ProductDetailsVM model = feedProductVM(p);
             return View("ProductDetails", model);
         }
@@ -64,8 +73,26 @@ namespace Joole_Project.Controllers
                 ProductID = p.Product_Id,
                 Series = p.Series,
                 Model = p.Model,
-                Product_image = p.Product_Image,
+                Product_Image = p.Product_Image,
                 Model_Year = p.Model_Year,
+                UseType = p.UseType,
+                Application = p.Application,
+                Mount = p.Mount,
+                Accessories = p.Accessories,
+                AirFlow = p.AirFlow,
+                MinPower = p.MinPower,
+                MaxPower = p.MaxPower,
+                MinVolt = p.MinVolt,
+                MaxVolt = p.MaxVolt,
+                MinRPM = p.MinRPM,
+                MaxRPM = p.MaxRPM,
+                Speeds = p.Speeds,
+                Sound = p.Sound,
+                Sweep = p.Sweep,
+                MinHeight = p.MinHeight,
+                MaxHeight = p.MaxHeight,
+                Weight = p.Weight
+
             };
             return pd;
 

@@ -14,7 +14,7 @@
         <thead>
             <tr>
                 <th scope="col" id="empty"></th>
-                @foreach (Joole_Project.Models.ProductDetailsVM item in array)
+                @foreach (var item in array)
                 {
                     <th scope="col" class="text-center">
                         @{ var image = item.Product_image;
@@ -36,7 +36,7 @@
                 @foreach (var item in array)
                 {
                     <td>
-                        @Html.DisplayFor(modelItem => item.ManufactureName)
+                        @Html.DisplayFor(modelItem => item.Manufacturer)
                     </td>
                 }
 
@@ -63,7 +63,7 @@
             <tr>
                 <td colspan='@count'>TYPE</td>
             </tr>
-            @foreach (Joole_Project.Models.PropertyVM property in array[0].Type_Property)
+            @foreach (var property in array[0].Type_Property)
             {
                 <tr>
                     <td scope="row">@Html.DisplayFor(modelItem => property.PropertyName)</td>
@@ -92,7 +92,7 @@
             <tr>
                 <td colspan="4">TECHNICAL SPECIFICATION</td>
             </tr>
-            @foreach (TheJooleProject.Models.PropertyVM property in array[0].Spec_Property)
+            @foreach (var property in array[0].Spec_Property)
             {
                 <tr>
                     <td scope="row">@Html.DisplayFor(modelItem => property.PropertyName)</td>
