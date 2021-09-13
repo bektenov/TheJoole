@@ -183,13 +183,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
-    <Content Include="Views\Product\ProductSummary.cshtml" />
     <Content Include="Views\Shared\_ProductLayout.cshtml" />
     <Content Include="Views\Product\ProductsCompare.cshtml" />
     <Content Include="Views\User\SignUp.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Search\AdvanceSearch.cshtml" />
+    <Content Include="Views\Search\ProductSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -35,9 +35,9 @@ namespace Joole_Project.Controllers
         }
         public ActionResult ProductDetails(long? id)
         {
-            Product p = productService.GetProduct(id.Value);
-            ProductDetailsVM model = feedProductVM(p);
-            return View("ProductDetails", model);
+            //Product p = productService.GetProduct(id.Value);
+            //ProductDetailsVM model = feedProductVM(p);
+            return View("ProductDetails");
         }
         [HttpGet]
         public ActionResult ProductsCompare(long? id1, long? id2, long? id3)

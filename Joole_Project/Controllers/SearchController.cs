@@ -60,6 +60,7 @@ namespace Joole_Project.Controllers
 
            
 
+                return View("ProductSummary");
             
         }
 

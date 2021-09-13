@@ -1,4 +1,4 @@
-﻿<style type="text/css">
+<style type="text/css">
         .auto-style1 {
             width: 342px;
         }
@@ -48,12 +48,14 @@
                 </button>
                 <ul class="dropdown-menu " id="Category">
 
+
                     @foreach (var val in Model.c)
+
                         {
                             <li value="@val.Category_Name" sub-id="@val.Category_Id"></li>
                         }
 
-                  @*  @{
+                    @*{
                         foreach (var item in ViewBag.data)
                         {
 
@@ -64,6 +66,7 @@
                         }
                     }
 *@
+
 
 
                 </ul>
