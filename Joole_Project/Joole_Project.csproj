@@ -181,7 +181,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
-    <Content Include="Views\Product\ProductSummary.cshtml" />
     <Content Include="Views\Shared\_ProductLayout.cshtml" />
     <Content Include="Views\Product\ProductsCompare.cshtml" />
     <Content Include="Views\User\SignUp.cshtml" />

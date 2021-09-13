@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "Index";
-    @model IEnumerable<TheJooleProject.Models.ProductDetailsVM>
+    @model IEnumerable<TheJooleProject.Models.ProductDetailsVM> 
+    List<TheJooleProject.Models.ProductDetailsVM> array = ViewBag.Model;
+    int count = array.Count + 1;
 }
 
 <!DOCTYPE html>
@@ -34,7 +36,7 @@
                         Category
                     </button>
                     <div class="dropdown-menu" aria-labelledby="categoryMenuBtn" id="categoriesDropDown">
-                     
+
                     </div>
 
 
@@ -45,7 +47,6 @@
                         <input name="SubCategory" list="subCategories" class="form-control mr-sm-2" type="text" aria-label="Search" id="searchInput" placeholder="Search..">
 
                         <datalist id="subCategories">
-                          
                         </datalist>
 
                         @*<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>*@
@@ -113,20 +114,25 @@
         <div id="products-div">
             <label id="products-div-label">Mechanical > HVAC Fans</label>
             <div id="cards-div">
-                <div class="product-summary-card">
-                    <img class="product-summary-img" />
-                    <label class="product-summary-company">Big Ass</label>
-                    <label class="product-summary-series">Haiku H Series</label>
-                    <label class="product-summary-id">S3150</label>
-                    <label class="product-summary-airflow">5.467 CFM</label>
-                    <label class="product-summary-maxspeed">21.14 W at max speed</label>
-                    <label class="product-summary-sound">35 dBa at max speed</label>
-                    <label class="product-summary-fanspeed">60" fan sweep diameter</label>
-                    <div id="product-summary-options">
-                        <input class="product-summary-card-compare" type="checkbox" /> <label class="product-summary-card-compare-label">Compare</label>
-                        <button class="product-summary-card-add" type="submit">Add to</button>
+                @foreach (var item in array)
+                {
+
+                    <div class="product-summary-card" dataId="@item.ProductId">
+                        <img class="product-summary-img" src="@item.Product_Image" />
+                        <label class="product-summary-company">@item.Manufacturer</label>
+                        <label class="product-summary-series">@item.Series</label>
+                        <label class="product-summary-id">@item.Id</label>
+                        <label class="product-summary-airflow">@item.AirFlow</label>
+                        <label class="product-summary-maxspeed">@item.MaxSpeed</label>
+                        <label class="product-summary-sound">@item.Sound</label>
+                        <label class="product-summary-fanspeed">@item.Speed</label>
+                        <div id="product-summary-options">
+                            <input class="product-summary-card-compare" type="checkbox" /> <label class="product-summary-card-compare-label">Compare</label>
+                            <button class="product-summary-card-add" type="submit">Add to</button>
+                        </div>
                     </div>
-                </div>
+
+                }
                 <div class="product-summary-card">
                     <img class="product-summary-img" />
                     <label class="product-summary-company">Big Ass</label>
@@ -174,3 +180,229 @@
     </div>
 </body>
 </html>
+
+<script>
+    $(document).ready(function ()
+    {
+
+        // var subCategoryList = @Model.
+        // var subCategory = $("a[data-selected='true']").next().attr("value");
+
+        var disableAllSubCatOptions = function () {
+            $("#subCategories").children("option").each(function () { $(this).prop("disabled", true) });
+
+        }
+        // disableAllSubCatOptions();
+
+        $("#categoriesDropDown").on("click", "a", function (event) {
+            disableAllSubCatOptions();
+            // while($("#subCategories option"))
+            let c = $(event.target).attr("value");
+            $(`.${c}`).prop("disabled", false);
+        });
+
+        $("#search").submit(function (event) {
+            console.log($("#searchInput").val());
+            console.log($("#search").serializeArray());
+            $(this).attr("method", "POST");
+            $(this).attr("action", "https://" + window.location.host + "/Search/ProductSummary");
+            console.log($(this).attr("action"));
+            // event.preventDefault();
+        });
+
+        $(".dropBtn").click(function () {
+            console.log("Drop button clicked");
+            var parentClass = $(this).attr("data-class");
+            console.log(parentClass);
+
+            //console.log($(`.${parentClass} .drop`).attr("hidden"));
+            console.log($(`.${parentClass} .drop`).is(":visible"));
+
+
+            //if ($(`.${parentClass} .drop`).attr("hidden")) {
+                if (!$(`.${parentClass} .drop`).is(":visible")) {
+                //$(`.${parentClass} .drop`).attr("hidden", false);
+                $(`.${parentClass} .drop`).show();
+            } else {
+                    //$(`.${parentClass} .drop`).attr("hidden", true);
+                    $(`.${parentClass} .drop`).hide();
+            }
+
+
+        });
+
+        var collectFilterInput = function () {
+            console.log("In collectFilterInput");
+            var minYear = $("#minModelYear").val();
+            var maxYear = $("#maxModelYear").val();
+
+            var filter = {
+                minYear: minYear, maxYear: maxYear, prop: {}
+            };
+            console.log("minYear: " + minYear);
+            console.log("maxYear: " + maxYear);
+            var techSpecs = $("#tech-box #tech-specs-dropdown").children("div");
+            for (var item of techSpecs) {
+
+                var propId = $($(item).children("div")[0]).attr("dataId");
+                //var val = $($(item).children("input")[0]).val();
+                var val = $($($(item).children("div")[1]).children("input")[0]).val();
+                filter.prop[ propId] =  val;
+                console.log("propId: " + propId);
+                console.log("val: " + val);
+            }
+            return filter;
+
+        }
+        collectFilterInput();
+        var clearFilter = function () {
+            $(".product-summary-card").each(function () {
+                $(this).attr("hidden", false);
+                //$(this).show();
+
+            });
+        }
+        $("#searchButton").click(function () {
+            console.log("searchButton clicked!");
+            clearFilter();
+            var filter = collectFilterInput();
+            $(".Product").each(function () {
+                console.log("data-modelyear"+$(this).attr("data-modelyear"));
+                if (filter["minYear"] && filter["maxYear"]) {
+                    if (!($(this).attr("data-modelyear") >= filter["minYear"] && $(this).attr("data-modelyear") <= filter["maxYear"])) {
+                        $(this).attr("hidden", true);
+                    }
+                } else if (filter["minYear"]) {
+                    if (!(this.attr["data-modelyear"] >= filter["minYear"])) {
+                        $(this).attr("hidden", true);
+                    }
+                } else if (filter["maxYear"]) {
+                    if (!(this.attr["data-modelyear"] <= filter["maxYear"])) {
+                        $(this).attr("hidden", true);
+                    }
+                }
+                var propElements = $(this).children(".propIDAndValue");
+                for (var elem of propElements) {
+                    if (filter.prop[$(elem).attr("data-propID")] < $(elem).attr("data-propertyValue")) {
+                        $(this).attr("hidden", true);
+                    }
+                }
+
+                //for (var item of filter.prop) {
+                //    var propId = item["propId"];
+                //    console.log("propId: " + propId);
+                //    let e = $(".propIDAndValue")
+                //    console.log($(e).attr("data-propertyVal") + "- propertyVal");
+                //    console.log(e);
+                //    if (item["val"] > $(e).attr("data-propertyVal")) {
+                //        $(this).attr("hidden", true);
+                //    }
+                //}
+            });
+        });
+
+        $("#clearButton").click(function () {
+            clearFilter();
+
+        });
+
+
+
+        var disableAllSubCatOptions = function () {
+            $("#subCategories").children("option").each(function () { $(this).prop("disabled", true) });
+
+        }
+        // disableAllSubCatOptions();
+
+        $("#categoriesDropDown").on("click", "a", function (event) {
+            disableAllSubCatOptions();
+            // while($("#subCategories option"))
+            let c = $(event.target).attr("value");
+            $(`.${c}`).prop("disabled", false);
+        });
+
+        $("#searchInput").on('input', function () {
+            var val = this.value;
+            if ($('#subCategories option').filter(function () {
+                return this.value.toUpperCase() === val.toUpperCase();
+            }).length) {
+                var id = $(`option[value='${val}']`).attr("data-id");
+                $(this).attr("data-SubCategoryID", id);
+            }
+        });
+
+
+        $("#search").submit(function (event) {
+            console.log($("#searchInput").val());
+            console.log($("#search").serializeArray());
+            $(this).attr("method", "POST");
+            $(this).attr("action", "https://" + window.location.host + "/Search/ProductSummary");
+            var sid_val = $("#searchInput").attr("data-SubCategoryID");
+            var sid = $(this).find("#SubCategoryID");
+
+            if (sid.length != 0) {
+                sid.remove();
+            }
+            $(this).append(`<input name='SubCategoryID' id='SubCategoryID' value='${sid_val}' hidden />`);
+            console.log($(this).attr("action"));
+            // event.preventDefault();
+        });
+
+        //click image
+        $("div").on("click", ".prodImage", function () {
+            console.log("clicked image!");
+            var id = $(this).attr("dataId");
+
+            window.location.href = `https://${window.location.host}/Products/ProductDetails/${id}`;
+
+        })
+
+         var compList = []
+
+                // Handler for .ready() called.
+                //clean the compare list
+                compList = []
+                //unchecked all checkbox
+                $("input[type='checkbox']").prop('checked', false);
+                $("input[type='checkbox']").change(addToCompare);
+                $("#compare").click(MoveToCompare);
+
+
+            function MoveToCompare() {
+                console.log("click Compare");
+                var n = compList.length;
+                var params = `?id1=${n > 0 ? compList[0] : -1}&id2=${n > 1 ? compList[1] : -1}&id3=${n > 2 ? compList[2] : -1}`;
+                console.log(params)
+                window.location.href = '@Url.Action("ProductsCompare", "Products")' + params;
+
+                //$.ajax({
+                //    url: '',
+                //    data: { ids: compList },
+                //    success: function (data) {
+                //        alert(data);
+
+                //    }
+                //});
+            }
+            function addToCompare() {
+                if (this.checked) {
+                    if (compList.length >= 3) {
+                        var checkid = compList.shift()
+                        $('#' + checkid).prop('checked', false)
+                    }
+                    compList.push($(this).prop('id'));
+                }
+                else {
+                    var index = 0;
+                    var checkid = $(this).prop('id');
+                    for (let i = 0; i < compList.length; i++) {
+                        if (compList[i] == checkid) {
+                            index = i;
+                        }
+                    }
+                    compList.splice(index, 1)
+                }
+                console.log(compList)
+            };
+    });
+</script>
