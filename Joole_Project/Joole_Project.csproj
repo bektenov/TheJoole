@@ -133,8 +133,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdvanceSearchVM.cs" />
     <Compile Include="Models\ProductDetailsVM.cs" />
+    <Compile Include="Models\SearchVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -186,10 +186,9 @@
     <Content Include="Views\Shared\_ProductLayout.cshtml" />
     <Content Include="Views\Product\ProductsCompare.cshtml" />
     <Content Include="Views\User\SignUp.cshtml" />
-    <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\Search\AdvanceSearch.cshtml" />
     <Content Include="Views\Search\ProductSummary.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -209,6 +208,10 @@
       <Project>{7d986c6c-b280-4d17-8ed2-6886798e22d4}</Project>
       <Name>Joole_DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Joole_Repository\Joole_Repository.csproj">
+      <Project>{28796D51-2F36-4CC6-AA24-A0691FD5F55A}</Project>
+      <Name>Joole_Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Joole_Service\Joole_Service.csproj">
       <Project>{d6ed453d-8036-45f1-8d86-6f17bb60e828}</Project>
       <Name>Joole_Service</Name>
@@ -217,6 +220,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Default\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

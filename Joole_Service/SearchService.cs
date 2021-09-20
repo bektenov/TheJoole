@@ -1,87 +1,64 @@
-﻿using System;
+﻿using Joole_DataAccess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Joole_DataAccess;
-using static Joole_DataAccess.SearchVM;
+using Joole_Repository;
+using JooleDBEntities1 = Joole_DataAccess.JooleDBEntities1;
 
 namespace Joole_Service
+
+
 {
-    public class SearchService
+    public class SearchService : ISearchService
     {
-        JooleDBEntities1 db = new JooleDBEntities1();
-        public SearchService(JooleDBEntities1 db)
+
+
+        private IRepository<Category> CategoryRepo;
+
+        private ProductRepo productRepository = new ProductRepo();
+
+        private IRepository<SubCategory> SubCategoryRepo;
+
+        private IRepository<Product> ProductRepo;
+        private JooleDBEntities1 db = new JooleDBEntities1();
+
+        public SearchService( JooleDBEntities1 db)
         {
+          /*  this.CategoryRepo = c;
+            this.SubCategoryRepo = sub;
+            this.ProductRepo = p;*/
             this.db = db; 
+
         }
 
-       
-        public List<Category> getCategory
+
+        public IEnumerable<Category> GetAllCategories()
         {
-            get
-            {
-              
-                List<Category> cag = db.Categories.ToList();
-                return cag;
-            }
-
-         
+           // return this.CategoryRepo.GetAll();
+            return db.Categories.ToList();
         }
 
-        public List<SubCategory> getSubCategory
+      
+
+        public IEnumerable<SubCategory> GetAllSubCategory()
         {
-            get
-            {
-
-                List<SubCategory> sb = db.SubCategories.ToList();
-                return sb;
-            }
-
-
+            return db.SubCategories.ToList();
         }
 
-
-
-
-        public List<SubCategory> getSubCategories(int categoryID)
+        public Category GetCategory(long id)
         {
-            return db.SubCategories.Where(sub => sub.Category_Id == categoryID).ToList();
+            return CategoryRepo.Get(id);
+
+
         }
 
-
-
-        public List<JoinSubCategorywithCategory> getAllSubCategoriesByCategoryID
+        public IEnumerable<Product> GetAllProducts()
         {
-            get
-            {
-                var sus =  db.Categories.Join(db.SubCategories, c => c.Category_Id, sc => sc.Category_Id, (c, sc) => new SearchVM.JoinSubCategorywithCategory { cat = c, sub = sc }).ToList();
-                return sus; 
-            }
-
-
+            return productRepository.GetAll();
 
         }
-
-     
-
-        public void LoadSearch(ref SearchVM s)
-        {
-
-            s.catJoinSub = getAllSubCategoriesByCategoryID;
-            s.c = getCategory; 
-           
-
-        }
-
-
-
-
-
-
-
-
-
     }
 }
 

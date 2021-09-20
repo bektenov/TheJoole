@@ -1,88 +1,67 @@
-<style type="text/css">
-        .auto-style1 {
-            width: 342px;
-        }
+﻿@model JooleProject.Models.SearchVM
 
-        .auto-style2 {
-            width: 74px;
-            height: 74px;
-        }
-    </style>
 @{
     ViewBag.Title = "Search";
 }
 
-@model Joole_DataAccess.SearchVM
-
-
 @Styles.Render("~/Content/Search.css");
+
+
 <head>
+
     <link rel="#" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="~/Content/search.css">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
+    <script>
+        //this isn't working for some reason 
+        $(document).ready(function () {
+
+            var availableTutorials = [
+                "Fan",
+                "helper",
+                "change",
+                "Bootstrap",
+                "C",
+                "C++",
+
+            ];
+            $('#sss').autocomplete({
+                source: availableTutorials
+              
+            });
+        });
+
+    </script>
 
 </head>
 
-<body id="styleSearch">
 
 
+<div class="container">
+    <div>
 
-
-    <img src="~/Content/image/jooleImg.png" id="jooleImg" margin-top="100px" />
-
-
-
-    @using (Html.BeginForm("Search", "Search", FormMethod.Get))
-    {
+        <img src="~/Content/image/jooleImg.png" id="jooleImg" margin-top="100px" />
         <h3> Building Product Selection Platform</h3>
 
 
+    </div>
 
-        <div class="d-flex flex-row">
+    @using (Html.BeginForm("AdvanceSearch", "Search"))
+    {
 
-            <div class="dropdown p-2">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="color:black">
-                    Category
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu " id="Category">
-
-
-                    @foreach (var val in Model.c)
-
-                        {
-                            <li value="@val.Category_Name" sub-id="@val.Category_Id"></li>
-                        }
-
-                    @*{
-                        foreach (var item in ViewBag.data)
-                        {
-
-                            //<li href="#">@item.Category_Name</li>
-
-                            <li> <a href="#" name="Category" value="@item.Category_Name"> @item.Category_Name </a> </li>
-
-                        }
-                    }
-*@
-
-
-
-                </ul>
-
-
-                &nbsp;<input type="search" id="searchInput" class="auto-style1" name=" SubCategory" />
-
-                <datalist id="subCategories">
-
-                    @foreach (var item in Model.catJoinSub)
-                    {
-                        <option value="@item.sub.SubCategory_Name" sub-id="@item.sub.SubCategory_Id"></option>
-                    }
-
-                </datalist>
-
+        <div class="row">
+            <div class="col" style="display:inline-block">
+                @Html.DropDownListFor(Model => Model.Category_Id, (IEnumerable<SelectListItem>)ViewBag.Category_Name, "Category", htmlAttributes: new { @class = "form-select" })
+            </div>
+            <div class="col"  id = "sss" style="display:inline-block">
+                @Html.TextBoxFor(Model => Model.Product_Name, new { @class = "form-select", id = "sss" })
+            </div>
+            <div class="col" style="display:inline-block">
                 <button type="submit" class="btn btn-primary">
                     @* <i class="fas fa-search">&nbsp; </i>*@
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -90,25 +69,15 @@
                         <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
                     </svg>
                 </button>
-                &nbsp;
-
-                <div class="auto-style2">
-                    <div class="form-outline">
-                        &nbsp;
-                    </div>
-                </div>
             </div>
-
-
-
         </div>
     }
 
 
 
-</body>
 
 
+  
 
 
-
+</div>
