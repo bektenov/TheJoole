@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Joole_Repository
 {
-    public interface IRepository<T>
+    public interface IRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
         T Get(long id);
